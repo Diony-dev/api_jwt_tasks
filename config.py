@@ -10,6 +10,11 @@ class DevelopmentConfig(Config):
     DEBUG=True
     
     
+class ProduccionConfig(Config):
+    DEBUG=False
+    
+    
 config={
-    'dev':DevelopmentConfig
+    'dev':DevelopmentConfig,
+    'prod':ProduccionConfig
 }
