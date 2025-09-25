@@ -11,7 +11,7 @@ def create_app(config):
     
     #cierra la conexion a la db al finalizar la app
     app.teardown_appcontext(close_db)
-    
+    app.logger.info('INICIO DE APLICACION EXITOSO, PROCEDIENDO A CONEXIÓN DB...')
     #importar rutas
     app.register_blueprint(AuthRoute,url_prefix='/api/auth')
     app.register_blueprint(TaskRoute,url_prefix='/api/tasks')
