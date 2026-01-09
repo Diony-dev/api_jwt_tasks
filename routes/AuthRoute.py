@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 from services.auth import insert_user, get_user, get_user_by_id,verify_password
 from utils.jwt_manager import generate_token
 from utils.security import token_required
@@ -14,7 +14,7 @@ def register():
     if registerUser:
         return jsonify({"message":"User already exists"}), 409
     user_id = insert_user(data)
-    main.logger.info(f'Nuevo usuario registrado con ID: {user_id}')
+    current_app.logger.info(f'Nuevo usuario registrado con ID: {user_id}')
     return jsonify({"message":"User registered successfully", "user_id": user_id}), 201
 
 @main.route('/info',methods=['GET'])
@@ -23,7 +23,7 @@ def info(user_id):
     user = get_user_by_id(user_id)
     if not user:
         return jsonify({"message":"User not found"}), 404
-    main.logger.info(f'Información del usuario recuperada con ID: {user_id}')
+    current_app.logger.info(f'Información del usuario recuperada con ID: {user_id}')
     return jsonify(user.to_dict()), 200
 
 @main.route('/login', methods=['POST'])
