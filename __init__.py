@@ -15,4 +15,9 @@ def create_app(config):
     #importar rutas
     app.register_blueprint(AuthRoute,url_prefix='/api/auth')
     app.register_blueprint(TaskRoute,url_prefix='/api/tasks')
+
+    @app.route('/')
+    def index():
+        return {'status': 'ok', 'message': 'API is running successfully 🚀'}
+
     return app
