@@ -19,7 +19,7 @@ def create_new_task(user_id):
 def get_tasks(user_id):
     tasks = get_tasks_by_user(user_id)
     if not tasks:
-        return jsonify({"message": "No se encontraron tareas"}), 404
+         return jsonify({"message": "Tareas obtenidas con éxito", "tasks": []}), 200
     return jsonify({"message": "Tareas obtenidas con éxito", "tasks":tasks}), 200
 
 
