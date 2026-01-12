@@ -2,12 +2,14 @@ from flask import Flask
 from routes.AuthRoute import main as AuthRoute
 from routes.TaskRoute import main as TaskRoute
 from database.db import close_db
+from flask_cors import CORS
 
 
 
 def create_app(config):
     app = Flask(__name__)
     app.config.from_object(config)
+    CORS(app)
     
     #cierra la conexion a la db al finalizar la app
     app.teardown_appcontext(close_db)
